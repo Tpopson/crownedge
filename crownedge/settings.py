@@ -168,6 +168,11 @@ JAZZMIN_SETTINGS = {
 
     # Copyright on the footer
     "copyright": "Crownedge",
+
+    # Field name on user model that contains avatar ImageField/URLField/Charfield or a callable that receives the user
+    "user_avatar": 'pix',
+
+    # "changeform_format": "horizontal_tabs",
 }
 
 # Default primary key field type
