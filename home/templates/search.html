@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+
+
+{% block title %} | {{items}} Rooms {% endblock title %} 
+
+{% block header %} {% include 'header.html' %}{% endblock header %} 
+
+
+{% block banner %} {% include 'banner.html' %} {% endblock banner %}
+
+{% block content %}  
+    <section>
+        <div class="text-center pb-5">
+          <!-- container fluid box starts here  -->
+        {% if items %}
+          <div class="container-fluid">
+                <h1 class="titlep">You searched for {{items}} Rooms</h1>
+                <div class="row royal mb-5">
+                <!-- col box starts here  -->
+                {% if searched_item %}
+                    {% for item in searched_item %}
+                    <div class="col-10 col-sm-9 col-md-5 col-lg-3 col-xl-3 mt-4 mb-4 royal-b">
+                    <div class="card royal-box">
+                        <img src="{{item.room_img.url}}" class="card-img-top w-100 royal-img">
+                        <div class="card-body royal-text">
+                            <h5 class="card-title">Room: </h5> 
+                            <p class="card-text">Rate: natural</p>
+                            <p class="card-text">Min: natural</p>
+                            <p class="card-text mb-3">Max: natural</p>
+                            <a href="" class="book">book now</a>
+                        </div>
+                    </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+                <!-- col box ends here  -->
+                </div>
+          </div>
+        {% else %}
+        <h3 class="card-title">You searched for {{item}} is not found</h3>
+        {% endif %}
+        </div>
+    <!-- container box ends here  -->
+    </section>
+
+{% endblock content %}
+{% block footer %} {% include 'footer.html' %} {% endblock footer %}

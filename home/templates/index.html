@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block keywords %} {% endblock keywords %}
+{% block descriptions %} {% endblock descriptions %}
+{% block header %} {% include 'header.html' %} {% endblock header %}
+{% block carousel %} {% include 'carousel.html' %} {% endblock carousel %}
+{% block content %}
+<section>
+    <div class="text-center">
+      <h1 class="title pb-3">Welcome to CrownEdge Hotel Lagos</h1>
+      <div class="content">
+          <h4>Your One Stop Destination for Your Hospitality Needs</h4>
+          <p style="color: gold;">An amazing experience located on the Lekki Peninsula, Victoria Island in Lagos state, south-west Nigeria.
+            With ease of access to Victoria Island and Ikoyi over the newly contstructed state of 
+            the art bridge, our hotel allows both business and leisure travellers to enjoy 
+            modern and luxurious facilities in a unique ambiance</p>
+      </div>
+    </div>
+    <div class="text-center">
+      <div class="container">
+       {% if standard_suite %}
+         {% for item in standard_suite %}
+          <h1 class="title">{{item.category|title}}</h1>
+          <div class="card mb-3 border-0">
+            <div class="row no-gutters">
+              <div class="col-md-6">
+                <img src="{{item.room_img.url}}" class="card-img">
+              </div>
+              <div class="col-md-6 dtitle">
+                <div class="card-body ctitle">
+                  <h3 class="card-title">Room: {{item.tag|title}}</h3>
+                  <p class="card-text">Rate: {{item.rate|floatformat:2|intcomma}}</p>
+                  <p class="card-text">Min: {{item.min_guest}}</p>
+                  <p class="card-text mb-4">Max: {{item.max_guest}}</p>
+                  <a href="{% url 'rooms' %}" class="">book now</a>  
+                </div>
+              </div>
+            </div>
+          </div>
+         {% endfor %}
+       {% endif %}
+      </div>
+    </div>
+
+    <div class="content-box">
+      <div class="content1">
+        <h4>Accommodation</h4>
+        <p>Crownedge Hotel offers a new vision on luxury with 74 rooms including 6 suites and a full range of facilities and provides redefined service to its guests in Lagos, Nigeria. With conference facilities, 
+          restaurant, bar, swimming-pool, gym and free Wi-Fi it is the ideal location for work and relaxation.</p>
+          <p>Our rooms are decorated in an urban chic style. Catch up on work at the desk, stay connected with complimentary Wi-Fi, Smart TV and 24hrs electricity.</p>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <div class="container">
+        {% if luxury_suite %}
+        {% for item in luxury_suite %}
+         <h1 class="title">{{item.category|title}}</h1>
+         <div class="card mb-3 border-0">
+           <div class="row no-gutters">
+             <div class="col-md-6">
+               <img src="{{item.room_img.url}}" class="card-img">
+             </div>
+             <div class="col-md-6 dtitle">
+               <div class="card-body ctitle">
+                 <h3 class="card-title">Room: {{item.tag|title}}</h3>
+                 <p class="card-text">Rate: {{item.rate|floatformat:2|intcomma}}</p>
+                 <p class="card-text">Min: {{item.min_guest}}</p>
+                 <p class="card-text mb-4">Max: {{item.max_guest}}</p>
+                 <a href="{% url 'rooms' %}" class="">book now</a>  
+               </div>
+             </div>
+           </div>
+         </div>
+        {% endfor %}
+      {% endif %}
+      </div>
+    </div>
+
+    <div class="content-box">
+      <div class="content2">
+        <h4>restaurant full of relishing meals</h4>
+        <p>Crownedge Hotel restaurant is Open 24hrs daily. Chose from one of our local and continental dishes.</p>
+        <p>Also a special complimentary breakfast for all. Check out the food lists from our in room menu.</p>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <div class="container">
+        {% if deluxe_suite %}
+          {% for item in deluxe_suite %}
+          <h1 class="title">{{item.category|title}}</h1>
+          <div class="card mb-3 border-0">
+            <div class="row no-gutters">
+              <div class="col-md-6">
+                <img src="{{item.room_img.url}}" class="card-img">
+              </div>
+              <div class="col-md-6 dtitle">
+                <div class="card-body ctitle">
+                  <h3 class="card-title">Room: {{item.tag|title}}</h3>
+                  <p class="card-text">Rate: {{item.rate|floatformat:2|intcomma}}</p>
+                  <p class="card-text">Min: {{item.min_guest}}</p>
+                  <p class="card-text mb-4">Max: {{item.max_guest}}</p>
+                  <a href="{% url 'rooms' %}" class="">book now</a>  
+                </div>
+              </div>
+            </div>
+         </div>
+        {% endfor %}
+      {% endif %}
+      </div>
+    </div>
+
+    <div class="content-box">
+      <div class="content3">
+        <h4>Pool side like none other</h4>
+        <p>Crownedge Hotel pool is so cool Whether for a relaxing swim or water workout, refresh and rejuvenate yourself in our chilled pool.
+          The poolside is a great place to enjoy a drink and snack after your exercise.</p>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <div class="container">
+        {% if royal_suite %}
+        {% for item in royal_suite %}
+         <h1 class="title">{{item.category|title}}</h1>
+         <div class="card mb-3 border-0">
+           <div class="row no-gutters">
+             <div class="col-md-6">
+               <img src="{{item.room_img.url}}" class="card-img">
+             </div>
+             <div class="col-md-6 dtitle">
+               <div class="card-body ctitle">
+                 <h3 class="card-title">Room: {{item.tag|title}}</h3>
+                 <p class="card-text">Rate: {{item.rate|floatformat:2|intcomma}}</p>
+                 <p class="card-text">Min: {{item.min_guest}}</p>
+                 <p class="card-text mb-4">Max: {{item.max_guest}}</p>
+                 <a href="{% url 'rooms' %}" class="">book now</a>  
+               </div>
+             </div>
+           </div>
+         </div>
+        {% endfor %}
+      {% endif %}
+      </div>
+    </div>
+
+    <div class="content-box">
+      <div class="content4">
+        <h4>bar full of choicest exotic drinks</h4>
+        <p>Crownedge Hotel always ensure to please with excellent hospitality, very friendly staffs 
+          ready to help resolve non standard requests and make one feel welcome and relaxed.</p>
+      </div>
+    </div>
+</section>
+{% endblock content %}
+{% block about %} {% include 'about.html' %} {% endblock about %}
+{% block map %} {% include 'map.html' %} {% endblock map %}
+{% block contact %} {% include 'contact.html' %} {% endblock contact %}
+{% block footer %} {% include 'footer.html' %} {% endblock footer %}

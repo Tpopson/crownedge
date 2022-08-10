@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+
+{% block title %} | {{profile.user.username}}   {% endblock title %}
+
+{% block header %} {% include 'header.html' %} {% endblock header %}
+
+{% block banner %} {% include 'banner.html' %} {% endblock banner %}
+
+{% block content %}
+    
+<!-- content  -->
+<section>
+    <div class="container-fluid">
+        <h1 class="title">{{profile.user.username}} dashboard</h1>
+        <div class="row prof">
+          <div class="col-12 col-sm-12 col-md-5 col-lg-4">
+            <div class="img-pcard">
+              <img src="{{profile.pix.url}}">
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-5 col-lg-5">
+            <div class="pro-form">
+              <form>
+                <div class="form-group">
+                  <label class="labe" for="exampleInputText1">first name</label>
+                  <input type="text" value="{{profile.first_name}}" class="form-control" id="exampleInputText1" aria-describedby="textHelp" readonly>
+                </div>
+                <div class="form-group">
+                  <label class="labe"  for="exampleInputText1">last name</label>
+                  <input type="text" value="{{profile.last_name}}" class="form-control" id="exampleInputText1" aria-describedby="textHelp" readonly>
+                </div>
+                <div class="form-group">
+                  <label class="labe"  for="exampleInputText1">address</label>
+                  <input type="text" value="{{profile.address}}" class="form-control" id="exampleInputText1" aria-describedby="textHelp" readonly>
+                </div>
+                <div class="form-group">
+                  <label class="labe"   for="exampleInputText1">phone</label>
+                  <input type="text" value="{{profile.phone}}" class="form-control" id="exampleInputText1" aria-describedby="textHelp" readonly>
+                </div>
+                <div class="form-group">
+                  <label class="labe"  for="exampleInputText1">email</label>
+                  <input type="email" value="{{profile.user.email}}" class="form-control" id="exampleInputText1" aria-describedby="textHelp" readonly>
+                </div>
+                <div class="form-group">
+                  <label class="labe"  for="exampleInputText1">state</label>
+                  <input type="text" value="{{profile.state}}" class="form-control" id="exampleInputText1" aria-describedby="textHelp" readonly>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-2 col-lg-3">
+            <div class="pro-links">
+              <h4 class="mb-4">Useful Links</h4>
+              <ul class="list-unstyled">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'rooms'  %}">gallery</a></li>
+                <li><a href="{% url 'profile'  %}">profile</a></li>
+                <li><a href="{% url 'update' %}">profile update</a></li>  
+                <li><a href="{% url 'password' %}">password update</a></li> 
+                <li><a href="{% url 'booking_details' %}">booking details</a></li>
+                <li><a href="{% url 'history' %}">booking history</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>     
+    </section>
+  <!-- content done -->
+
+{% endblock content %}
+
+{% block footer %} {% include 'footer.html' %} {% endblock footer %}

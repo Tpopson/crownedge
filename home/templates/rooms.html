@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block title %} | Available Rooms {% endblock title %} 
+
+{% block header %} {% include 'header.html' %}{% endblock header %} 
+
+
+{% block banner %} {% include 'banner.html' %} {% endblock banner %}
+
+{% block content %}
+
+<section>
+    <div class="text-center pb-5">
+      <!-- container fluid box starts here  -->
+      <div class="container-fluid">
+        <h1 class="titlep">royal</h1>
+        <div class="row royal mb-5">
+          <!-- col box starts here  -->
+          {% if paginate %}
+            {% for item in paginate %}
+            <div class="col-10 col-sm-9 col-md-5 col-lg-3 col-xl-3 mt-4 mb-4 royal-b">
+              <div class="card royal-box">
+                <a href="{% url 'details' item.id item.slug %}"><img src="{{item.room_img.url}}" class="card-img-top w-100 royal-img" style="height: 30vh;"></a>
+                <div class="card-body royal-text">
+                  <h5 class="card-title">Room: {{item.tag|title}}</h5> 
+                  <p class="card-text">Rate: {{item.rate|floatformat:2|intcomma}}</p>
+                  <p class="card-text">Min: {{item.min_guest}}</p>
+                  <p class="card-text mb-3">Max: {{item.max_guest}}</p>
+                  {% if item.available %}
+                    <a href="{% url 'details' item.id item.slug %}" class="book">book now</a> 
+                  {% else %}
+                    <p class="book">Currently booked</p>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          {% endif %}
+          <!-- col box ends here  -->
+        </div>
+        <!-- pagination -->
+        <nav aria-label="...">
+          <ul class="pagination justify-content-center">
+            {% if paginate.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{paginate.previous_page_number}}" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+              <a class="page-link" href="?page=1" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            {% endif %}
+            {% for item in paginate.paginator.page_range %}
+              {% if paginate.number == item %}
+              <li class="page-item active" aria-current="page">
+                <a class="page-link" href="#">{{item}} <span class="sr-only">(current)</span></a>
+              </li>
+              {% else %}
+              <li class="page-item"><a class="page-link" href="?page={{item}}">{{item}}</a></li>
+              {% endif %}
+            {% endfor %}
+            
+            {% if paginate.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{paginate.next_page_number}}">Next</a>
+            </li>
+            {% else %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{paginate.paginator.num_pages}}">Last</a>
+            </li>
+            {% endif %}
+            <li class="page-item"><a class="page-link" href="#">Page {{paginate.number}} of {{paginate.paginator.num_pages}}</a></li>
+          </ul>
+        </nav>
+        <!-- pagination done -->
+      </div>
+    </div>
+<!-- container box ends here  -->
+</section>
+
+{% endblock content %}
+{% block footer %} {% include 'footer.html' %} {% endblock footer %}

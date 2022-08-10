@@ -1,0 +1,30 @@
+<div class="container ccontainer pt-3" id="contactus">
+    <h1 class="title">contact us</h1>
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="form-box">
+          <form action="{% url 'talktous' %}" method="POST">
+            {% csrf_token %}
+            <!-- <h3 class="mb-4">Talk to us</h3> -->
+            <div class="form-group">
+              <label class="labe" for="exampleInputText1">full name</label>
+              <input type="text" name="full_name" class="form-control" id="exampleInputText1" aria-describedby="textHelp">
+            </div>
+            <div class="form-group">
+              <label class="labe"  for="exampleInputText1">phone</label>
+              <input type="text" name="phone" class="form-control" id="exampleInputText1" aria-describedby="textHelp">
+            </div>
+            <div class="form-group">
+              <label  class="labe"  for="exampleInputEmail1">email</label>
+              <input  type="email"  name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="form-group">
+              <label class="labe"  for="exampleInputText1">message</label>
+              <textarea class="box" name="message" cols="20" rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn contact-btn">send message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>

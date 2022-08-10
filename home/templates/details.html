@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+
+{% block title %} |{{detail.tag|title}} Rooms {% endblock title %}
+{% block header %} {% include 'header.html' %} {% endblock header %}
+{% block banner %} {% include 'banner.html' %} {% endblock banner %}
+{% block content %}
+<div class="container mt-4 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-10  h-100 mt-3">
+            <div class="card mb-3 w-100 h-100">
+                <div class="row no-gutters pt-5  detail-box">
+                    <div class="col-md-6 detimg">
+                        <img src="{{detail.room_img.url}}" class="card-img w-100">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body detail">
+                            <h4 class="card-title">Room :{{detail.tag|title}}</h4>
+                            <p class="card-text">{{detail.description}}</p>
+                            <h6>Rate &RightArrow; <span> {{detail.rate|floatformat:2|intcomma}}</span></h6>
+                            <h6>Max Guest &RightArrow; <span> {{detail.min_guest}}</span></h6> 
+                            <h6>Max Guest &RightArrow; <span> {{detail.max_guest}}</span></h6> 
+                            <form method="POST" action="{% url 'booking' %}" onsubmit="return validate()">  
+                            {% csrf_token %}  
+                                <label for="">Check In &RightArrow;<input  type="date" name="checkin" id="checkin" required></label>
+                                <label for="">Check Out &RightArrow;<input type="date" name="checkout" id="checkout" required></label>
+                                <input type="hidden" name="roomid" value="{{detail.id}}">
+                                {% if detail.available %}
+                                    <button type="submit" class="btn ml-5 mt-3 float-center detail-btn" id="bookbtn">Request Now</button>
+                                {% else %}
+                                    <p class="book">Currently booked</p>
+                                {% endif %}
+                            </form>
+                        </div>
+                    </div>
+                    <div class="features">
+                      <ul class="list-inline">
+                          <li class="list-inline-item m-4"><i class="fas fa-wifi"></i></li>
+                          <li class="list-inline-item m-4"><i class="fas fa-mug-hot"></i></li>
+                          <li class="list-inline-item m-4"><i class="fas fa-tv"></i></li>
+                          <li class="list-inline-item m-4"><i class="fas fa-shower"></i></li>
+                          <li class="list-inline-item m-4"><i class="fas fa-utensils"></i></li>
+                          <li class="list-inline-item m-4"><i class="fas fa-car"></i></li>
+                      </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+<!-- content section done -->
+{% endblock content %}
+{% block footer %} {% include 'footer.html' %} {% endblock footer %}

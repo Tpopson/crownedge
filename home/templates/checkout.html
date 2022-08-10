@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+
+{% block title %} | Checkout{% endblock title %}
+
+{% block header %} {% include 'header.html' %} {% endblock header %}
+
+{% block content %}
+    
+
+<!-- content  -->
+<section>
+  <div class="container-fluid check">
+    <h1 class="title">checkout</h1>
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-6">
+        <h3 class="summary">shipping details</h3>
+        <div class="table-responsive">
+          <table class="cart table">
+            <thead>
+              <tr>
+                <th scope="col">room</th>
+                <th scope="col">checkin</th>
+                <th scope="col">checkout</th>
+                <th scope="col">days</th>
+                <th scope="col"># amount</th>
+              </tr>
+            </thead>
+            <tbody> 
+              {% if booking %}
+                {% for item in booking %}
+                  <tr>
+                    <td><img src="{{item.room.room_img.url}}" style="width: 50px;"></td>
+                    <td>{{item.checkin}}</td>
+                    <td>{{item.checkout}}</td>
+                    <td>{{item.no_days}}</td>
+                    <td>{{item.amount|floatformat:2|intcomma}}</td>
+                  </tr>                
+                {% endfor %}
+              {% endif %}
+            </tbody>
+          </table>
+          <table class="cart table">
+            <tbody>         
+            <tr>
+              <td class="row"></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>Total: {{total|floatformat:2|intcomma}}</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6">
+        <h3 class="summary">billing details</h3>
+          <div class="shipping">
+            <form action="{% url 'pay' %}" method="POST">  
+            {% csrf_token %}
+              <div class="form-group">
+                <label class="labe" for="exampleInputText1">first name</label>
+                <input type="text" name="first_name" value="{{profile.first_name}}" class="form-control" id="exampleInputText1" aria-describedby="textHelp">
+              </div>
+              <div class="form-group">
+                <label class="labe"  for="exampleInputText1">last name</label>
+                <input type="text" name="last_name" value="{{profile.last_name}}" class="form-control" id="exampleInputText1" aria-describedby="textHelp">
+              </div>
+              <div class="form-group">
+                <label class="labe"  for="exampleInputText1">address</label>
+                <input type="text" name="address" value="{{profile.address}}" class="form-control" id="exampleInputText1" aria-describedby="textHelp">
+              </div>
+              <div class="form-group">
+                <label class="labe"  for="exampleInputText1">phone</label>
+                <input type="text" name="phone" value="{{profile.phone}}" class="form-control" id="exampleInputText1" aria-describedby="textHelp">
+              </div>
+              <div class="form-group">
+                <label class="labe"  for="exampleInputText1">state</label>
+                <input type="text" name="state" value="{{profile.state}}" class="form-control" id="exampleInputText1" aria-describedby="textHelp">
+                <input type="hidden" name="total" value="{{total}}">
+              </div>
+              <button type="submit" class="btn check-btn">Pay Now</button>
+            </form>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- content done -->
+
+
+{% endblock content %}
+
+{% block footer %} {% include 'footer.html' %} {% endblock footer %}

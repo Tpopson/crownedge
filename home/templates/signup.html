@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+
+{% block title %} | User Signup {% endblock title %} 
+
+{% block header %} {% include 'header.html' %}{% endblock header %} 
+
+{% block content %}
+<div class="reg">
+  <h1 class="titles">singup</h1>
+  <div class="form">
+    <div class="form-page">
+      <form action="{% url 'signup' %}" method="POST"> 
+      {% csrf_token %}
+        <div class="form-group">
+          <label class="labe" for="exampleInputText1">username</label>
+          <input type="text" name="username" class="form-control" id="exampleInputText1" aria-describedby="textHelp">
+        </div>
+        <div class="form-group">
+          <label class="labe" for="exampleInputText1">first name</label>
+          <input type="text" name="first_name" class="form-control" id="exampleInputText1" aria-describedby="textHelp">
+        </div>
+        <div class="form-group">
+          <label class="labe" for="exampleInputText1">last name</label>
+          <input type="text" name="last_name" class="form-control" id="exampleInputText1" aria-describedby="textHelp">
+        </div>
+        <div class="form-group">
+          <label class="labe" for="exampleInputemail1">email</label>
+          <input type="email" name="email" class="form-control" id="exampleInputemail1" aria-describedby="emailHelp">
+        </div>
+        <div class="form-group">
+          <label class="labe" for="exampleInputtext1">phone</label>
+          <input type="text" name="phone" class="form-control" id="exampleInputText1" aria-describedby="textHelp">
+        </div>
+        <div class="form-group">
+          <input type="hidden" name="pix" value="profile/avatar.jpg" class="form-control" id="exampleInputText1" aria-describedby="textHelp">
+        </div>
+        <!-- <div class="form-group">
+          <input type="hidden" name="is_staff" value="True" class="form-control" id="exampleInputText1" aria-describedby="textHelp">
+        </div> -->
+        <div class="form-group">
+          <label class="labe"  for="exampleInputText1">password</label>
+          <input type="text" name="password1" class="form-control" id="exampleInputText1" aria-describedby="textHelp">
+        </div>
+        <div class="form-group">
+          <label class="labe"  for="exampleInputText1">confirm password</label>
+          <input type="text" name="password2" class="form-control" id="exampleInputText1" aria-describedby="textHelp">
+        </div>
+        <button type="submit" class="btn check-btn">signup</button>
+      </form>
+    </div>
+  </div>
+
+    
+{% endblock content %}
+
+{% block footer %} {% include 'footer.html' %} {% endblock footer %}
+</div>

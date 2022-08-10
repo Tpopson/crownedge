@@ -1,0 +1,118 @@
+{% load simple_tags %}
+
+
+<!-- topbar  -->
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-sm-6 col-md-2 col-lg-3 mt-3 mb-2 hide">
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href=""><i class="fas fa-phone-alt"></i></a><span>+234-0106788543</span></li>
+        </ul>
+      </div>
+      <div class="col-12 col-sm-6 col-md-2 col-lg-3 mt-3 mb-2 hide">
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href=""><i class="fab fa-facebook"></i></a></li>
+          <li class="list-inline-item"><a href=""><i class="fab fa-instagram"></i></a></li>
+          <li class="list-inline-item"><a href=""><i class="fab fa-twitter"></i></a></li>
+          <li class="list-inline-item"><a href=""><i class="fab fa-linkedin"></i></a></li>
+          <li class="list-inline-item"><a href=""><i class="fab fa-whatsapp"></i></a></li>
+        </ul>
+      </div>
+      <div class="col-12 col-sm-12 col-md-8 col-lg-6 mt-3 mb-2 auth">
+        <ul class="">
+          {% if user.is_authenticated %}
+            <li class=""><a href="{% url 'profile' %}" class="welcome">welcome, 
+              <span>
+                {% if user.first_name %}
+                  {{request.user.first_name}}
+                {% else %}
+                  {{request.user.username}}
+                {% endif %} 
+              </span></i></a></li>  
+            <li><a href="{% url 'profile' %" class="welimg"><img src="{{profile.pix.url}}"></a></li> 
+            <li><a href="{% url 'profile' %}" class="user-btn"><span>profile</span></a></li>
+            <li><a href="{% url 'signout' %}" class="user-btn"><span>signout</span></a></li> 
+            <li>
+              <a href="{% url 'booked' %}" class="user-btn">
+                {% if itemcount > 0 %}
+                  <span class="badge badge-pill badge-info"> 
+                    <i class="fas fa-bed"></i>
+                    <span class="badge badge-pill badge-warning">{{itemcount}}</span>
+                  </span>
+                {% else %}
+                  <i class="fas fa-bed"></i>
+                {% endif %}
+              </a>
+            </li> 
+          {% else %}
+            <li class=""><a href="{% url 'signin' %}" class="user-btn"><i class="fas fa-user"></i><span>signin</span></a></li>
+            <li class=""><a href="{% url 'signup' %}" class="user-btn"><i class="fas fa-users"></i><span>signup</span></a></li>  
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- topbar done -->
+
+    <!-- navbar  -->
+    <!-- <div class="nav">  -->
+      <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <a class="navbar-brand" href="{% url 'home' %}"><img src="{{cprofile.logo.url}}" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'home' %}">home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'booked' %}">reservation</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                categories
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{% url 'categories'  %}">Room categories</a>   
+                
+                {% if categories %}
+                  {% for item in categories %}
+                  <a class="dropdown-item" href="{% url 'category' item.id item.slug %}">{{item.room_type|title}}</a>
+                  {% endfor %}
+                {% endif %}
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'rooms' %}">rooms</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% intralink 'home' 'aboutus' %}">about</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% intralink 'home' 'contact' %}">contact</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" method="POST"> 
+            {% csrf_token %}
+            <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn form-btn" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+    </div>
+    <!-- navbar done  -->
+
+    {% comment %} messages {% endcomment %}
+    {% if messages %}
+      {% for item in messages %}
+      <div class="alert alert-success alert-dismissible fade show mb-0 text-center" role="alert" >
+        <strong>{{item}}</strong> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %}
+    {% endif %}
+    {% comment %} messages done {% endcomment %}

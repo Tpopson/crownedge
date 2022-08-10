@@ -1,0 +1,83 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keyword" content="{% block keywords %} {% endblock keywords %}"> 
+    <meta name="descriptions" content="{% block descriptions %} {% endblock descriptions %}"> 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '' %}css/style.css"> 
+    <link rel="icon" type="image/png" sizes="96x96" href="{{cprofile.favicon.url}}">
+    <title>CrownEdge Hotel  {% block title %} {% endblock title %} </title>
+  </head>
+  <body>
+    <!-- header  -->
+    {% block header %}{% endblock header %}
+    <!-- header done -->
+
+    <!-- Carousel  -->
+    {% block carousel %}{% endblock carousel %}
+    <!-- Carousel done -->
+
+    {% comment %} banner  {% endcomment %}
+    {% block banner %} {% endblock banner %}
+    {% comment %} banner done {% endcomment %}
+
+    <!-- content section  -->
+    {% block content %}{% endblock content %}
+    <!-- content section done -->
+
+    {% comment %} about {% endcomment %}
+    {% block about %}{% endblock about %}
+    {% comment %} about done {% endcomment %}
+    
+    <div class="contact" id="contact">
+        {% comment %} map and contact  {% endcomment %}
+        {% block map %}{% endblock map %}
+        {% block contact %}{% endblock contact %}
+        {% comment %} map and contact done {% endcomment %}
+    </div>
+    
+    <!-- footer  -->
+    {% block footer %}{% endblock footer %}
+    <!-- footer done -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+    <script>
+
+      /* const btn = document.querySelector('#bookbtn'); */
+      const input = document.querySelector('#checkin');
+      const input2 = document.querySelector('#checkout');
+      const today = new Date()
+
+   
+      function validate(){
+        if(new Date(input.value).getDate() < today.getDate()){
+          alert('You have selected an invalid checkin date.')
+          input.focus()
+          return false
+        }
+        if(new Date(input2.value).getDate() < today.getDate()){
+          alert('You have selected an invalid checkout date.')
+          input2.focus()
+          return false
+        }
+        e.preventDefault()
+        return false
+      }
+      
+         
+  </script>
+  </body>
+</html>
